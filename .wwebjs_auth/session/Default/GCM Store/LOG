@@ -1,2 +1,3 @@
-2025/04/14-02:01:13.064 c1b4 Creating DB C:\Users\alnea\whatsapp-n8n-bot\.wwebjs_auth\session\Default\GCM Store since it was missing.
-2025/04/14-02:01:13.069 c1b4 Reusing MANIFEST C:\Users\alnea\whatsapp-n8n-bot\.wwebjs_auth\session\Default\GCM Store/MANIFEST-000001
+2025/04/14-02:28:36.649 ec0 Reusing MANIFEST C:\Users\alnea\whatsapp-n8n-bot\.wwebjs_auth\session\Default\GCM Store/MANIFEST-000001
+2025/04/14-02:28:36.650 ec0 Recovering log #3
+2025/04/14-02:28:36.651 ec0 Reusing old log C:\Users\alnea\whatsapp-n8n-bot\.wwebjs_auth\session\Default\GCM Store/000003.log 

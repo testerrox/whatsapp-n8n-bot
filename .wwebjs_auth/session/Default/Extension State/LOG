@@ -1,2 +1,3 @@
-2025/04/14-02:01:08.413 5a04 Creating DB C:\Users\alnea\whatsapp-n8n-bot\.wwebjs_auth\session\Default\Extension State since it was missing.
-2025/04/14-02:01:08.421 5a04 Reusing MANIFEST C:\Users\alnea\whatsapp-n8n-bot\.wwebjs_auth\session\Default\Extension State/MANIFEST-000001
+2025/04/14-02:28:34.646 93d0 Reusing MANIFEST C:\Users\alnea\whatsapp-n8n-bot\.wwebjs_auth\session\Default\Extension State/MANIFEST-000001
+2025/04/14-02:28:34.647 93d0 Recovering log #3
+2025/04/14-02:28:34.647 93d0 Reusing old log C:\Users\alnea\whatsapp-n8n-bot\.wwebjs_auth\session\Default\Extension State/000003.log 
