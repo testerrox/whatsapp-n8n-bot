@@ -3,13 +3,11 @@ import bodyParser from 'body-parser';
 import qrcode from 'qrcode-terminal';
 import fetch from 'node-fetch';
 import puppeteer from 'puppeteer';
-
-// ✅ الطريقة الصحيحة لاستيراد whatsapp-web.js كموديول CommonJS
 import whatsapp from 'whatsapp-web.js';
 const { Client, LocalAuth } = whatsapp;
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
@@ -79,5 +77,5 @@ app.get('/logout', async (req, res) => {
 
 client.initialize();
 app.listen(PORT, () => {
-  console.log(`🚀 السيرفر يعمل على http://localhost:${PORT}`);
+  console.log(`🚀 السيرفر يعمل على المنفذ ${PORT}`);
 });
