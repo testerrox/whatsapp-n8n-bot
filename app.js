@@ -2,23 +2,45 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import qrcode from 'qrcode-terminal';
 import fetch from 'node-fetch';
-import puppeteer from 'puppeteer';
 import whatsapp from 'whatsapp-web.js';
+import { execSync } from 'child_process';
+import puppeteer from 'puppeteer-core';
+
 const { Client, LocalAuth } = whatsapp;
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
+// مسار المتصفح الخارجي - يتم تحديده تلقائياً بناءً على النظام
+function getChromePath() {
+  try {
+    return execSync('which google-chrome').toString().trim();
+  } catch {
+    try {
+      return execSync('which chromium-browser').toString().trim();
+    } catch {
+      return null;
+    }
+  }
+}
+
+const executablePath = getChromePath();
+
+if (!executablePath) {
+  console.error("❌ لم يتم العثور على متصفح Chrome في السيرفر.");
+  process.exit(1);
+}
 
 const client = new Client({
   authStrategy: new LocalAuth(),
   puppeteer: {
-    executablePath: puppeteer.executablePath(),
+    executablePath,
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   }
 });
+
+app.use(bodyParser.json());
 
 client.on('qr', qr => {
   qrcode.generate(qr, { small: true });
@@ -29,11 +51,8 @@ client.on('ready', () => {
 });
 
 client.on('message', async msg => {
-  console.log("💥 دخلنا على on.message");
-
   const from = msg.from;
   const message = msg.body;
-
   console.log("📩 تم استلام رسالة من:", from, "النص:", message);
 
   try {
@@ -53,7 +72,6 @@ client.on('message', async msg => {
 
 app.post('/send-message', async (req, res) => {
   const { number, message } = req.body;
-
   try {
     await client.sendMessage(number, message);
     console.log("✅ تم إرسال الرد إلى:", number);
